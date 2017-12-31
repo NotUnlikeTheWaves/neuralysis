@@ -13,7 +13,7 @@ void print_matrix(matrix &m) {
     std::cout << std::endl;
 }
 
-int main(int* argc, char** argv) {
+int main(int argc, char** argv) {
         // create a matrix from a file
     matrix a = matrix(2, 3);
     a[0][0] = 2;
@@ -47,5 +47,9 @@ int main(int* argc, char** argv) {
     matrix *y = z.transpose();
     matrix f = matrix(*e);
     print_matrix(f);
+    matrix *pl = b + (*c);
+    print_matrix(*pl);
+    matrix *minus = b - (*c);
+    print_matrix(*minus);
     return 0;
 }

@@ -45,9 +45,13 @@ matrix* matrix::transpose(void) const {
     return m;
 }
 
+double* matrix::operator[](const unsigned int i) const {
+    return values[i];
+}
+
 matrix* matrix::operator*(const matrix& other) const {
     if(get_columns() != other.get_rows()) throw;
-    matrix* m = new matrix(rows_, other.columns_);
+    matrix* m = new matrix(get_rows(), other.get_columns());
     for(unsigned int x = 0; x < m->get_rows(); x++) {
         for(unsigned int y = 0; y < m->get_columns(); y++) {
                 // Slight optimizaton to not initialize to 0
@@ -60,6 +64,24 @@ matrix* matrix::operator*(const matrix& other) const {
     return m;
 }
 
-double* matrix::operator[](unsigned int i) const {
-    return values[i];
+matrix* matrix::operator+(const matrix& other) const {
+    if(get_columns() != other.get_columns() || get_rows() != other.get_rows()) throw;
+    matrix* m = new matrix(get_rows(), get_columns());
+    for(unsigned int x = 0; x < m->get_rows(); x++) {
+        for(unsigned int y = 0; y < m->get_rows(); y++) {
+            (*m)[x][y] = values[x][y] + other[x][y];
+        }
+    }
+    return m;
+}
+
+matrix* matrix::operator-(const matrix& other) const {
+    if(get_columns() != other.get_columns() || get_rows() != other.get_rows()) throw;
+    matrix* m = new matrix(get_rows(), get_columns());
+    for(unsigned int x = 0; x < m->get_rows(); x++) {
+        for(unsigned int y = 0; y < m->get_rows(); y++) {
+            (*m)[x][y] = values[x][y] - other[x][y];
+        }
+    }
+    return m;
 }

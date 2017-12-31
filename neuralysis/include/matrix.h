@@ -10,8 +10,11 @@ namespace neuralysis {
         unsigned int get_columns(void) const;
         unsigned int get_rows(void) const;
         matrix* transpose(void) const;
+        double* operator[](const unsigned int i) const;
         matrix* operator*(const matrix& other) const;
-        double* operator[](unsigned int i) const;
+        matrix* operator+(const matrix& other) const;
+        matrix* operator-(const matrix& other) const;
+
 
     private:
         double** values;
