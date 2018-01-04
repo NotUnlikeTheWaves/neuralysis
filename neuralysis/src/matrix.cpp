@@ -68,7 +68,7 @@ matrix* matrix::operator+(const matrix& other) const {
     if(get_columns() != other.get_columns() || get_rows() != other.get_rows()) throw;
     matrix* m = new matrix(get_rows(), get_columns());
     for(unsigned int x = 0; x < m->get_rows(); x++) {
-        for(unsigned int y = 0; y < m->get_rows(); y++) {
+        for(unsigned int y = 0; y < m->get_columns(); y++) {
             (*m)[x][y] = values[x][y] + other[x][y];
         }
     }
@@ -79,9 +79,18 @@ matrix* matrix::operator-(const matrix& other) const {
     if(get_columns() != other.get_columns() || get_rows() != other.get_rows()) throw;
     matrix* m = new matrix(get_rows(), get_columns());
     for(unsigned int x = 0; x < m->get_rows(); x++) {
-        for(unsigned int y = 0; y < m->get_rows(); y++) {
+        for(unsigned int y = 0; y < m->get_columns(); y++) {
             (*m)[x][y] = values[x][y] - other[x][y];
         }
     }
     return m;
+}
+
+void matrix::operator=(const matrix& other) const {
+    if(get_columns() != other.get_columns() || get_rows() != other.get_rows()) throw;
+    for(unsigned int x = 0; x < get_rows(); x++) {
+        for(unsigned int y = 0; y < get_columns(); y++) {
+            values[x][y] = other[x][y];
+        }
+    }
 }

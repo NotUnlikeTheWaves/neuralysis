@@ -14,7 +14,7 @@ namespace neuralysis {
         matrix* operator*(const matrix& other) const;
         matrix* operator+(const matrix& other) const;
         matrix* operator-(const matrix& other) const;
-
+        void operator=(const matrix&) const;
 
     private:
         double** values;

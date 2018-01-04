@@ -51,5 +51,9 @@ int main(int argc, char** argv) {
     print_matrix(*pl);
     matrix *minus = b - (*c);
     print_matrix(*minus);
+
+    matrix o = matrix(2, 3);
+    o = a;
+    print_matrix(o);
     return 0;
 }
