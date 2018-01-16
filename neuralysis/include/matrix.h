@@ -9,11 +9,11 @@ namespace neuralysis {
         ~matrix();
         unsigned int get_columns(void) const;
         unsigned int get_rows(void) const;
-        matrix* transpose(void) const;
+        matrix transpose(void) const;
         double* operator[](const unsigned int i) const;
-        matrix* operator*(const matrix& other) const;
-        matrix* operator+(const matrix& other) const;
-        matrix* operator-(const matrix& other) const;
+        matrix operator*(const matrix& other) const;
+        matrix operator+(const matrix& other) const;
+        matrix operator-(const matrix& other) const;
         void operator=(const matrix&) const;
 
     private:
@@ -23,4 +23,4 @@ namespace neuralysis {
     };
 }
 
-#endif
+#endif // NEURALYSIS_MATRIX_H

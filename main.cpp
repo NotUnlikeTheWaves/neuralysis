@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace neuralysis;
-void print_matrix(matrix &m) {
+void print_matrix(const matrix &m) {
     for(unsigned int x = 0; x < m.get_rows(); x++) {
         for(unsigned int y = 0; y < m.get_columns(); y++) {
             std::cout <<m[x][y] << " - ";
@@ -31,26 +31,37 @@ int main(int argc, char** argv) {
     b[2][0] = 9;
     b[2][1] = 4;
  
-
+    std::cout << "Print a" << std::endl;
     print_matrix(a);
+    std::cout << "Print b" << std::endl;
     print_matrix(b);
 
-    matrix *c = a.transpose();
-    print_matrix(*c);
-    std::cout << c->get_columns() << std::endl;
-    std::cout << c->get_rows() << std::endl;
-    matrix *d = a * b;
-    matrix *e = b * a;
-    print_matrix(*d);
-    print_matrix(*e);
-    const matrix z = matrix(3, 3);
-    matrix *y = z.transpose();
-    matrix f = matrix(*e);
+    std::cout << "Print a transpose" << std::endl;
+    matrix c = a.transpose();
+    print_matrix(c);
+    std::cout << c.get_rows() << std::endl;
+    std::cout << c.get_columns() << std::endl;
+
+    matrix d = a * b;
+    matrix e = b * a;
+    std::cout << "Print a*b" << std::endl;
+    print_matrix(d);
+    std::cout << "Print b*a" << std::endl;
+    print_matrix(e);
+
+    std::cout << "Print copy(a*b)" << std::endl;
+    matrix f = matrix(e);
     print_matrix(f);
-    matrix *pl = b + (*c);
-    print_matrix(*pl);
-    matrix *minus = b - (*c);
-    print_matrix(*minus);
+    matrix pl = b + c;
+    print_matrix(pl);
+    matrix minus = b - c;
+
+
+    std::cout << "Test minus:: " << std::endl <<std::endl;
+    print_matrix(b);
+    print_matrix(c);
+    print_matrix(minus);
+    std::cout << "End Test minus:: " << std::endl <<std::endl;
 
     matrix o = matrix(2, 3);
     o = a;
